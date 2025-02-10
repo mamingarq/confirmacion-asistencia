@@ -22,6 +22,12 @@
         function confirmarAsistencia(nombre) {
             if (!confirmados.includes(nombre)) {
                 confirmados.push(nombre);
+                fetch("https://script.google.com/macros/s/AKfycbwyLUQnYsIn0SFFF6mwBWlSLBONicieY2plmgLgL7CIKmJ9x0-qq5v3YaO6mDgFvLAcbQ/exec", {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ nombre: nombre })
+                });
             }
             document.getElementById("mensaje").innerHTML = "Gracias por confirmar tu asistencia.";
         }
