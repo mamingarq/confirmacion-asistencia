@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Asistencia</title>
+    <script>
+        const invitados = ["Juan Perez", "Maria Lopez", "Carlos Sanchez", "Ana Gómez"];
+        const confirmados = [];
+        
+        function verificarInvitado() {
+            const nombre = document.getElementById("nombre").value.trim().toLowerCase();
+            const mensaje = document.getElementById("mensaje");
+            
+            if (invitados.some(inv => inv.toLowerCase() === nombre)) {
+                mensaje.innerHTML = `Bienvenido, ${nombre}. <button onclick="confirmarAsistencia('${nombre}')">Confirmar asistencia</button>`;
+            } else {
+                mensaje.innerHTML = "<span style='font-size: 20px; font-weight: bold;'>Lo sentimos, tu nombre no está en la lista de invitados.</span>";
+            }
+        }
+        
+        function confirmarAsistencia(nombre) {
+            if (!confirmados.includes(nombre)) {
+                confirmados.push(nombre);
+            }
+            document.getElementById("mensaje").innerHTML = "Gracias por confirmar tu asistencia.";
+        }
+    </script>
+</head>
+<body>
+    <h2>Confirmación de Asistencia</h2>
+    <label for="nombre">Ingresa tu primer nombre y tu primer apellido sin tildes :</label>
+    <input type="text" id="nombre">
+    <button onclick="verificarInvitado()">Verificar</button>
+    <p id="mensaje"></p>
+</body>
+</html>
